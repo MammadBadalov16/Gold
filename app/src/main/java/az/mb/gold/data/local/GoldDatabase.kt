@@ -14,7 +14,7 @@ import az.mb.gold.data.local.entity.ProductEntity
     entities = [
         ProductEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class GoldDatabase : RoomDatabase() {

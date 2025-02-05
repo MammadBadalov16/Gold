@@ -100,7 +100,7 @@ fun Header(
             },
             text = {
                 Column {
-                    Text(text = "Cəm çəki: ${audit.totalWeight} kg")
+                    Text(text = "Cəm çəki: ${audit.totalWeight} qram")
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(text = "Cəm alış qiyməti: ${audit.totalPurchasePrice} AZN")
                     Spacer(modifier = Modifier.height(8.dp))

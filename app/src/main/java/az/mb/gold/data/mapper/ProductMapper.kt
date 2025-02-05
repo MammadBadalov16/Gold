@@ -4,14 +4,12 @@ import az.mb.gold.data.local.entity.ProductEntity
 import az.mb.gold.data.remote.ProductDTO
 import az.mb.gold.domain.model.Product
 
-
 fun Product.toProductEntity(): ProductEntity {
     return ProductEntity(
         id = id,
         seller = seller,
         productNumber = productNumber,
         productName = productName,
-        categoryName = categoryName,
         weight = weight,
         purchasePrice = purchasePrice,
         salePrice = salePrice,
@@ -30,7 +28,6 @@ fun Product.toProductDTO(): ProductDTO {
         seller = seller,
         productNumber = productNumber,
         productName = productName,
-        categoryName = categoryName,
         weight = weight,
         purchasePrice = purchasePrice,
         salePrice = salePrice,
@@ -48,7 +45,6 @@ fun ProductDTO.toProductEntity(firebaseStatus: Boolean): ProductEntity {
         seller = seller,
         productNumber = productNumber,
         productName = productName,
-        categoryName = categoryName,
         weight = weight,
         purchasePrice = purchasePrice,
         salePrice = salePrice,
@@ -67,7 +63,6 @@ fun ProductEntity.toProductDTO(): ProductDTO {
         seller = seller,
         productNumber = productNumber,
         productName = productName,
-        categoryName = categoryName,
         weight = weight,
         purchasePrice = purchasePrice,
         salePrice = salePrice,
@@ -88,7 +83,6 @@ fun List<ProductEntity>.toProducts(): List<Product> {
                 seller = it.seller,
                 productNumber = it.productNumber,
                 productName = it.productName,
-                categoryName = it.categoryName,
                 weight = it.weight,
                 purchasePrice = it.purchasePrice,
                 salePrice = it.salePrice,
@@ -110,7 +104,6 @@ fun Map<String, Any>.toProductDTO(): ProductDTO {
         seller = this["seller"] as String,
         productNumber = this["productNumber"] as String,
         productName = this["productName"] as String,
-        categoryName = this["categoryName"] as String,
         weight = (this["weight"] as Number).toDouble(),
         purchasePrice = (this["purchasePrice"] as Number).toInt(),
         salePrice = (this["salePrice"] as Number).toInt(),
@@ -119,8 +112,7 @@ fun Map<String, Any>.toProductDTO(): ProductDTO {
         dateSale = this["dateSale"] as String,
         isSold = this["sold"] as Boolean,
         isDeleted = this["deleted"] as Boolean,
-        updateAt = this["updateAt"] as Long,
-        )
+        updateAt = this["updateAt"] as Long,)
 }
 
 

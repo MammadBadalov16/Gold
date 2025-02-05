@@ -141,10 +141,17 @@ class ProductViewModel @Inject constructor(
                     )
 
                     val columnNames = listOf(
-                        "Nömrə", "Satıcı", "Adı", "Növü", "Çəkisi", "Alış qiyməti", "Satış qiyməti",
-                        "Xeyir", "Alış tarixi", "Satış tarixi"
+                        "Nömrə",
+                        "Alış tarixi",
+                        "Satıcı",
+                        "Adı",
+                        "Çəkisi",
+                        "Alış qiyməti",
+                        "Satış qiyməti",
+                        "Xeyir",
+                        "Satış tarixi"
                     )
-                    val columnWidths = floatArrayOf(3f, 3f, 3f, 3f, 2f, 2f, 2f, 2f, 3f, 3f)
+                    val columnWidths = floatArrayOf(3f, 3f, 3f, 3f, 2f, 2f, 2f, 2f, 3f)
                     val table = Table(columnWidths, true)
 
                     for (columnName in columnNames) {
@@ -156,9 +163,9 @@ class ProductViewModel @Inject constructor(
 
                     for (product in products) {
                         table.addCell(Cell().add(Paragraph(product.productNumber).setFont(font)))
+                        table.addCell(Cell().add(Paragraph(product.datePurchase).setFont(font)))
                         table.addCell(Cell().add(Paragraph(product.seller).setFont(font)))
                         table.addCell(Cell().add(Paragraph(product.productName).setFont(font)))
-                        table.addCell(Cell().add(Paragraph(product.categoryName).setFont(font)))
                         table.addCell(Cell().add(Paragraph(product.weight.toString()).setFont(font)))
                         table.addCell(
                             Cell().add(
@@ -175,7 +182,6 @@ class ProductViewModel @Inject constructor(
                             )
                         )
                         table.addCell(Cell().add(Paragraph(product.profit.toString()).setFont(font)))
-                        table.addCell(Cell().add(Paragraph(product.datePurchase).setFont(font)))
                         table.addCell(Cell().add(Paragraph(product.dateSale).setFont(font)))
                     }
 

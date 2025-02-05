@@ -10,7 +10,6 @@ data class ProductEntity(
     val seller: String,
     val productNumber: String,
     val productName: String,
-    val categoryName: String,
     val weight: Double,
     val purchasePrice: Int,
     val salePrice: Int,

@@ -3,14 +3,13 @@
     <string-array name="column_names">
         <item>#</item>
         <item>Nömrə</item>
+        <item>Alış tarixi</item>
         <item>Satıcı</item>
         <item>Adı</item>
-        <item>Növü</item>
         <item>Çəkisi</item>
         <item>Alış qiyməti</item>
         <item>Satış qiyməti</item>
         <item>Xeyir</item>
-        <item>Alış tarixi</item>
         <item>Satış tarixi</item>
         <item>Əməliyyatlar</item>
         <item>"Status"</item>
@@ -20,7 +19,6 @@
         <item>Nömrə</item>
         <item>Satıcı</item>
         <item>Adı</item>
-        <item>Növü</item>
         <item>Çəkisi</item>
         <item>Alış qiyməti</item>
         <item>Satış qiyməti</item>

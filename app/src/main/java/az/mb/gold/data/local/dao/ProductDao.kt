@@ -27,7 +27,6 @@ interface ProductDao {
         val queryBuilder =
             StringBuilder("SELECT * FROM ProductEntity WHERE 1=1")
 
-
         if (product.productNumber != "") {
             queryBuilder.append(" AND productNumber = '${product.productNumber}'")
         }
@@ -38,10 +37,6 @@ interface ProductDao {
 
         if (product.productName != "") {
             queryBuilder.append(" AND LOWER(productName) = LOWER('${product.productName}')")
-        }
-
-        if (product.categoryName != "") {
-            queryBuilder.append(" AND LOWER(categoryName) = LOWER('${product.categoryName}')")
         }
 
         if (product.weight != 0.0) {

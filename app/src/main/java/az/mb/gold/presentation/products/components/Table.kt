@@ -143,6 +143,12 @@ fun Table(
                                     isSold = product.isSold
                                 )
                                 TableCellWithBorders(
+                                    text = product.datePurchase,
+                                    width = cellWidth,
+                                    height = cellHeight,
+                                    isSold = product.isSold
+                                ) // Purchase date
+                                TableCellWithBorders(
                                     text = product.seller,
                                     width = cellWidth,
                                     height = cellHeight,
@@ -154,12 +160,6 @@ fun Table(
                                     height = cellHeight,
                                     isSold = product.isSold
                                 )
-                                TableCellWithBorders(
-                                    text = product.categoryName,
-                                    width = cellWidth,
-                                    height = cellHeight,
-                                    isSold = product.isSold
-                                ) // Category
                                 TableCellWithBorders(
                                     text = product.weight.toString(),
                                     width = cellWidth,
@@ -184,12 +184,6 @@ fun Table(
                                     height = cellHeight,
                                     isSold = product.isSold
                                 ) // Profit
-                                TableCellWithBorders(
-                                    text = product.datePurchase,
-                                    width = cellWidth,
-                                    height = cellHeight,
-                                    isSold = product.isSold
-                                ) // Purchase date
                                 TableCellWithBorders(
                                     text = product.dateSale,
                                     width = cellWidth,
@@ -372,13 +366,12 @@ fun EditProductDialog(
                         0 -> editableProduct.value.productNumber
                         1 -> editableProduct.value.seller
                         2 -> editableProduct.value.productName
-                        3 -> editableProduct.value.categoryName
-                        4 -> editableProduct.value.weight.toString()
-                        5 -> editableProduct.value.purchasePrice.toString()
-                        6 -> editableProduct.value.salePrice.toString()
-                        7 -> editableProduct.value.profit.toString()
-                        8 -> editableProduct.value.datePurchase
-                        9 -> editableProduct.value.dateSale
+                        3 -> editableProduct.value.weight.toString()
+                        4 -> editableProduct.value.purchasePrice.toString()
+                        5 -> editableProduct.value.salePrice.toString()
+                        6 -> editableProduct.value.profit.toString()
+                        7 -> editableProduct.value.datePurchase
+                        8 -> editableProduct.value.dateSale
                         else -> ""
                     }
 
@@ -396,12 +389,9 @@ fun EditProductDialog(
                                     editableProduct.value.copy(productName = it)
 
                                 3 -> editableProduct.value =
-                                    editableProduct.value.copy(categoryName = it)
-
-                                4 -> editableProduct.value =
                                     editableProduct.value.copy(weight = it.toDoubleOrNull() ?: 0.0)
 
-                                5 -> {
+                                4 -> {
                                     val purchasePrice = it.toDoubleOrNull() ?: 0
                                     editableProduct.value = editableProduct.value.copy(
                                         purchasePrice = purchasePrice.toInt(),
@@ -409,7 +399,7 @@ fun EditProductDialog(
                                     )
                                 }
 
-                                6 -> {
+                                5 -> {
                                     val salePrice = it.toDoubleOrNull() ?: 0
                                     editableProduct.value = editableProduct.value.copy(
                                         salePrice = salePrice.toInt(),
@@ -422,10 +412,10 @@ fun EditProductDialog(
                                     editableProduct.value = editableProduct.value.copy()
                                 }*/
 
-                                8 -> editableProduct.value =
+                                6 -> editableProduct.value =
                                     editableProduct.value.copy(datePurchase = it)
 
-                                9 -> editableProduct.value =
+                                7 -> editableProduct.value =
                                     editableProduct.value.copy(dateSale = it)
                             }
                         },
@@ -434,7 +424,7 @@ fun EditProductDialog(
                             .fillMaxWidth()
                             .padding(vertical = 4.dp)
                             .let {
-                                if (index == 8 || index == 9) {
+                                if (index == 7 || index == 8) {
                                     it.clickable {
                                         dateFieldIndex = index
                                         showDatePicker = true
@@ -443,7 +433,7 @@ fun EditProductDialog(
                                     it
                                 }
                             },
-                        enabled = index != 7 && index !in listOf(8, 9)
+                        enabled = index != 6 && index !in listOf(7, 8)
                     )
                 }
             }
@@ -466,9 +456,9 @@ fun EditProductDialog(
     if (showDatePicker) {
         DatePickerDialog(
             onDateSelected = { date ->
-                if (dateFieldIndex == 8) {
+                if (dateFieldIndex == 7) {
                     editableProduct.value = editableProduct.value.copy(datePurchase = date)
-                } else if (dateFieldIndex == 9) {
+                } else if (dateFieldIndex == 8) {
                     editableProduct.value = editableProduct.value.copy(dateSale = date)
                 }
                 showDatePicker = false
