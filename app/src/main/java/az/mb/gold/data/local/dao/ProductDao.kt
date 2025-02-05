@@ -79,6 +79,8 @@ interface ProductDao {
 
         queryBuilder.append(" AND isDeleted = 0")
 
+        queryBuilder.append(" ORDER BY rowid DESC")
+
         val query = SimpleSQLiteQuery(queryBuilder.toString())
 
 

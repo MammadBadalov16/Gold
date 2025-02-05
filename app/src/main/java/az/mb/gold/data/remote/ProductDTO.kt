@@ -16,7 +16,9 @@ data class ProductDTO(
     val dateSale: String,
     val isSold: Boolean,
     val isDeleted: Boolean,
-    var updateAt: Any = FieldValue.serverTimestamp()
+    var updateAt: Long = System.currentTimeMillis(),
+
+
 )
 
 

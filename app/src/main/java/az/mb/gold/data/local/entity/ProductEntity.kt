@@ -20,6 +20,7 @@ data class ProductEntity(
     val isSold: Boolean,
     var firebaseStatus: Boolean,
     val isDeleted: Boolean,
+
 )
 
 

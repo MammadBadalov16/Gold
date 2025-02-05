@@ -3,7 +3,6 @@ package az.mb.gold.data.mapper
 import az.mb.gold.data.local.entity.ProductEntity
 import az.mb.gold.data.remote.ProductDTO
 import az.mb.gold.domain.model.Product
-import com.google.firebase.Timestamp
 
 
 fun Product.toProductEntity(): ProductEntity {
@@ -120,8 +119,7 @@ fun Map<String, Any>.toProductDTO(): ProductDTO {
         dateSale = this["dateSale"] as String,
         isSold = this["sold"] as Boolean,
         isDeleted = this["deleted"] as Boolean,
-        updateAt = this["updateAt"] as Timestamp,
-
+        updateAt = this["updateAt"] as Long,
         )
 }
 

@@ -12,6 +12,7 @@ import az.mb.gold.domain.repository.NetworkRepository
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -50,10 +51,11 @@ class NetworkRepositoryImpl(
         val collectionRef = firebaseFireStore.collection(FireStoreCollection.PRODUCTS)
 
         collectionRef
-            .whereGreaterThan(
+            /*.whereGreaterThan(
                 "updateAt",
                 Timestamp(lastSyncTime / 1000, ((lastSyncTime % 1000) * 1000000).toInt())
-            )
+            )*/
+            .whereGreaterThan("updateAt",lastSyncTime)
             .addSnapshotListener { snapshots, e ->
                 if (e != null) {
                     Timber.e("Error fetching updates: $e")
@@ -114,12 +116,16 @@ class NetworkRepositoryImpl(
         val productList = dao.getProductsNotInFirebase()
         productList.forEach { product ->
             try {
-                product.firebaseStatus = true
+                //Send firebase
+                val productDTO = product.toProductDTO()
+                productDTO.updateAt = System.currentTimeMillis()
                 withTimeout(3000) {
                     val document = firebaseFireStore.collection(FireStoreCollection.PRODUCTS)
-                        .document(product.id)
-                    document.set(product, SetOptions.merge()).await()
+                        .document(productDTO.id)
+                    document.set(productDTO, SetOptions.merge()).await()
                 }
+                //Add local db
+                product.firebaseStatus = true
                 dao.upsertProduct(product = product)
             } catch (e: Exception) {
                 Timber.e("Firebase Add Product : ${e.message.toString()}")
